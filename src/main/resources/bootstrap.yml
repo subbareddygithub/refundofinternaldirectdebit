@@ -1,0 +1,62 @@
+management: 
+  endpoint: 
+    metrics: 
+      enabled: true
+    prometheus: 
+      enabled: true
+  endpoints: 
+    web: 
+      exposure: 
+        include: "*"
+  metrics: 
+    export: 
+      prometheus: 
+        enabled: true
+spring: 
+  application: 
+    name: refundofinternaldd
+  cloud: 
+    config: 
+      failFast: false
+      retry: 
+        maxAttempts: 20
+      uri: ${CONFIG_SERVER_URI}
+  profiles: 
+    active: ${PROFILE:dev}
+  sleuth: 
+    sampler: 
+      percentage: 1
+  api: 
+    corporate current account: 
+      context-path: /CorporateCurrentAccount/Initiate
+      hosturl: /test
+      jolt-filename: Corporate Current Account783556-jolt.json
+    current account: 
+      context-path: /CurrentAccount/Initiate
+      hosturl: /test
+      jolt-filename: Current Account525008-jolt.json
+    direct debit: 
+      context-path: /DirectDebit/{directdebitId}/Control
+      hosturl: /test
+      jolt-filename: Direct Debit758732-jolt.json
+    payment execution: 
+      context-path: /PaymentExecution/Initiate
+      hosturl: /test
+      jolt-filename: Payment Execution965849-jolt.json
+    payment initiation: 
+      context-path: /PaymentInitiation/Initiate
+      hosturl: /test
+      jolt-filename: Payment Initiation716821-jolt.json
+    payment order: 
+      context-path: /PaymentOrder/Initiate
+      hosturl: /test
+      jolt-filename: Payment Order545489-jolt.json
+    position keeping: 
+      context-path: /PositionKeeping/Initiate
+      hosturl: /test
+      jolt-filename: Position Keeping954699-jolt.json
+  datasource: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${mysql_pwd}
+    url: jdbc:mysql://${mysql_url}:3306/camunda
+    username: ${mysql_user}
